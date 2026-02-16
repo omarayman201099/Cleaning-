@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@cleaningstore.com"
+  },
+  {
+    "id": "5cf4efa2-59be-425b-96b4-f612cf00273b",
+    "username": "admin2",
+    "email": "admin@example.com",
+    "password": "$2a$10$bgaEhrCezYRZjYShW6CxoOJ15YHbQYClbSZmosGMylk9IXiCQkI2a",
+    "role": "admin",
+    "createdAt": "2026-02-15T02:16:11.370Z"
+  }
+]

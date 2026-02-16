@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cleaning Products Store</title>
+    <link rel="stylesheet" href="/admin.css">
+
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="login-section" class="container">
+        <div class="login-box">
+            <h1>Admin Login</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+            <p class="demo-credentials">Demo: admin / admin123</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="hidden">
+        <header class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <div class="header-actions">
+                <span id="admin-info"></span>
+                <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="stats-container">
+            <div class="stat-card">
+                <h3>Total Products</h3>
+                <p id="stat-products" class="stat-number">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Orders</h3>
+                <p id="stat-orders" class="stat-number">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Sales</h3>
+                <p id="stat-sales" class="stat-number">$0.00</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pending Orders</h3>
+                <p id="stat-pending" class="stat-number">0</p>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs -->
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" data-tab="products">Products</button>
+            <button class="nav-btn" data-tab="categories">Categories</button>
+            <button class="nav-btn" data-tab="orders">Orders</button>
+            <button class="nav-btn" data-tab="add-product">Add Product</button>
+        </nav>
+
+        <!-- Products Tab -->
+        <section id="products-tab" class="tab-content active">
+            <h2>All Products</h2>
+            <div id="products-list" class="products-grid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Categories Tab -->
+        <section id="categories-tab" class="tab-content">
+            <h2>Categories Management</h2>
+            <div class="categories-header">
+                <button class="btn btn-primary" id="add-category-btn">Add New Category</button>
+            </div>
+            <div id="categories-list" class="categories-grid">
+                <!-- Categories will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Orders Tab -->
+        <section id="orders-tab" class="tab-content">
+            <h2>All Orders</h2>
+            <div class="orders-table-container">
+                <table id="orders-table" class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-tbody">
+                        <!-- Orders will be loaded here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Add/Edit Product Tab -->
+        <section id="add-product-tab" class="tab-content">
+            <h2 id="product-form-title">Add New Product</h2>
+            <form id="product-form" enctype="multipart/form-data">
+                <input type="hidden" id="product-id">
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <input type="text" id="product-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-price">Price ($)</label>
+                        <input type="number" id="product-price" name="price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-stock">Stock</label>
+                        <input type="number" id="product-stock" name="stock" min="0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <select id="product-category" name="category" required>
+                        <option value="">Select Category</option>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Product Image</label>
+                    <input type="file" id="product-image" name="image" accept="image/*">
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submit-product-btn">Add Product</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn" style="display: none;">Cancel</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-modal">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-product-form" enctype="multipart/form-data">
+                <input type="hidden" id="edit-product-id">
+                <div class="form-group">
+                    <label for="edit-product-name">Product Name</label>
+                    <input type="text" id="edit-product-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-description">Description</label>
+                    <textarea id="edit-product-description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-product-price">Price ($)</label>
+                        <input type="number" id="edit-product-price" name="price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-product-stock">Stock</label>
+                        <input type="number" id="edit-product-stock" name="stock" min="0" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-category">Category</label>
+                    <select id="edit-product-category" name="category" required>
+                        <option value="">Select Category</option>
+                        <!-- Categories will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-image">Product Image</label>
+                    <input type="file" id="edit-product-image" name="image" accept="image/*">
+                    <div id="edit-image-preview" class="image-preview"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Status Update Modal -->
+    <div id="status-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-status-modal">&times;</span>
+            <h2>Update Order Status</h2>
+            <form id="status-form">
+                <input type="hidden" id="status-order-id">
+                <div class="form-group">
+                    <label for="order-status">Status</label>
+                    <select id="order-status" name="status" required>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Status</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-delete-modal">&times;</span>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+            <input type="hidden" id="delete-item-id">
+            <input type="hidden" id="delete-item-type">
+            <div class="modal-actions">
+                <button id="confirm-delete-btn" class="btn btn-danger">Delete</button>
+                <button id="cancel-delete-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="category-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-category-modal">&times;</span>
+            <h2 id="category-modal-title">Add New Category</h2>
+            <form id="category-form">
+                <input type="hidden" id="category-id">
+                <div class="form-group">
+                    <label for="category-name">Category Name</label>
+                    <input type="text" id="category-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="category-description">Description</label>
+                    <textarea id="category-description" name="description" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submit-category-btn">Add Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Order Modal -->
+    <div id="view-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" id="close-view-modal">&times;</span>
+            <h2>Order Details</h2>
+            <p><strong>Order ID:</strong> <span class="order-id"></span></p>
+            <p><strong>Customer:</strong> <span class="order-customer"></span></p>
+            <p><strong>Phone / Address:</strong></p>
+            <p class="order-address"></p>
+            <p><strong>Status:</strong> <span class="order-status"></span></p>
+            <p><strong>Date:</strong> <span class="order-date"></span></p>
+            <h3>Items</h3>
+            <div class="order-items"></div>
+            <p><strong>Total:</strong> <span class="order-total"></span></p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="printInvoice()">Print Invoice</button>
+                <button class="btn btn-secondary" id="close-view-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

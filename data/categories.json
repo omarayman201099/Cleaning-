@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "cleaners",
+    "description": "All-purpose cleaners and disinfectants",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "wipes",
+    "description": "Cleaning wipes and disposable cloths",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "floor care",
+    "description": "Floor cleaners, polishes, and mops",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "5",
+    "name": "kitchen",
+    "description": "Kitchen cleaning and degreasing products",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "6",
+    "name": "laundry",
+    "description": "Laundry detergents and fabric care",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "7",
+    "name": "other",
+    "description": "Other cleaning products",
+    "createdAt": "2024-01-01T00:00:00.000Z"
+  }
+]

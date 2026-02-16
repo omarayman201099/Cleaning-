@@ -1,0 +1,45 @@
+[
+  {
+    "id": "6f4760b9-43e7-4497-a03e-19209fff90c0",
+    "customerName": "oamr",
+    "customerEmail": "omarayman201099@gmail.com",
+    "customerPhone": "01029195998",
+    "address": "shpeen elkom\n77",
+    "items": [
+      {
+        "id": "e27c990a-d002-4455-a127-038e95ad4665",
+        "name": "fdf",
+        "price": 44,
+        "quantity": 1
+      }
+    ],
+    "totalAmount": 44,
+    "status": "pending",
+    "createdAt": "2026-02-15T00:39:16.971Z"
+  },
+  {
+    "id": "ade04508-b581-4851-90c0-c2256012615c",
+    "customerName": "gngg",
+    "customerEmail": "gggg2nggo@gmail.com",
+    "customerPhone": "gggg",
+    "address": "ggg",
+    "items": [
+      {
+        "id": "8cefcb8d-d9ef-4e4b-a8a5-c6135c54bb72",
+        "name": "oamr",
+        "price": 44,
+        "quantity": 1
+      },
+      {
+        "id": "7698ddee-e831-410c-ab64-fe0fc6fd49eb",
+        "name": "oxi",
+        "price": 700,
+        "quantity": 1
+      }
+    ],
+    "totalAmount": 744,
+    "status": "confirmed",
+    "createdAt": "2026-02-15T02:21:44.334Z",
+    "updatedAt": "2026-02-15T03:24:32.310Z"
+  }
+]
